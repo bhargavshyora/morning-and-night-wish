@@ -3,68 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Aesthetic Good Night 🌙</title>
+  <title>Good Night ✨</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,400;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,500;1,600&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg-gradient: radial-gradient(circle at 50% 20%, #1E1B4B 0%, #0F172A 60%, #030712 100%);
-      --card-bg: rgba(30, 27, 75, 0.55);
-      --card-border: rgba(255, 255, 255, 0.15);
-      --text-main: #F8FAFC;
-      --text-sub: #94A3B8;
-      --accent: #A78BFA;
-      --accent-glow: rgba(167, 139, 250, 0.4);
-      --tag-bg: rgba(255, 255, 255, 0.08);
-      --shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6), 0 0 25px rgba(167, 139, 250, 0.15);
-    }
-
-    [data-theme="dreamy"] {
-      --bg-gradient: radial-gradient(circle at 50% 15%, #2E1065 0%, #1E1B4B 50%, #090514 100%);
-      --card-bg: rgba(46, 16, 101, 0.5);
-      --card-border: rgba(216, 180, 254, 0.2);
-      --text-main: #FAF5FF;
-      --text-sub: #C084FC;
-      --accent: #F472B6;
-      --accent-glow: rgba(244, 114, 182, 0.4);
-      --shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6), 0 0 25px rgba(244, 114, 182, 0.15);
-    }
-
-    [data-theme="cozy"] {
-      --bg-gradient: radial-gradient(circle at 50% 20%, #1E293B 0%, #0F172A 55%, #020617 100%);
-      --card-bg: rgba(15, 23, 42, 0.65);
-      --card-border: rgba(148, 163, 184, 0.2);
-      --text-main: #F1F5F9;
-      --text-sub: #64748B;
-      --accent: #38BDF8;
-      --accent-glow: rgba(56, 189, 248, 0.4);
-      --shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6), 0 0 25px rgba(56, 189, 248, 0.15);
-    }
-
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
       -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    :root {
+      --bg: radial-gradient(circle at 50% 15%, #1E1B4B 0%, #0F172A 60%, #030712 100%);
+      --card-bg: rgba(30, 27, 75, 0.6);
+      --card-border: rgba(255, 255, 255, 0.15);
+      --text: #F8FAFC;
+      --sub: #94A3B8;
+      --accent: #A78BFA;
+      --accent-glow: rgba(167, 139, 250, 0.4);
+      --item-bg: rgba(255, 255, 255, 0.08);
+      --shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.6);
     }
 
     body {
       min-height: 100vh;
-      background: var(--bg-gradient);
+      background: var(--bg);
       font-family: 'Outfit', sans-serif;
-      color: var(--text-main);
-      overflow-x: hidden;
+      color: var(--text);
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
-      padding: 24px 16px 40px;
-      transition: background 0.8s ease;
+      padding: 20px 16px 40px;
+      transition: background 0.6s ease;
       position: relative;
+      overflow-x: hidden;
     }
 
-    #stars-canvas {
+    canvas {
       position: fixed;
       top: 0;
       left: 0;
@@ -76,42 +55,32 @@
 
     .container {
       width: 100%;
-      max-width: 440px;
+      max-width: 420px;
       position: relative;
       z-index: 2;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 16px;
     }
 
-    /* Top bar */
-    .top-bar {
+    .top-controls {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 99px;
-      padding: 8px 16px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.3);
-    }
-
-    .date-badge {
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: var(--text-sub);
-      display: flex;
       align-items: center;
-      gap: 6px;
+      padding: 0 4px;
     }
 
-    .sound-btn {
-      background: var(--tag-bg);
+    .date-tag {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--sub);
+    }
+
+    .music-btn {
+      background: var(--item-bg);
       border: 1px solid var(--card-border);
       border-radius: 99px;
-      padding: 6px 12px;
+      padding: 6px 14px;
       font-size: 0.78rem;
       font-weight: 600;
       color: var(--accent);
@@ -119,620 +88,443 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      transition: all 0.25s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     }
-    .sound-btn:active {
-      transform: scale(0.95);
-    }
-    .sound-btn.playing {
+
+    .music-btn.playing {
       background: var(--accent);
       color: #0F172A;
-      box-shadow: 0 0 16px var(--accent-glow);
     }
 
-    /* Switcher pill */
-    .theme-pills {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      background: rgba(0, 0, 0, 0.25);
-      padding: 5px;
-      border-radius: 99px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(10px);
-    }
-
-    .pill-btn {
-      border: none;
-      background: transparent;
-      padding: 6px 14px;
-      border-radius: 99px;
-      font-size: 0.76rem;
-      font-weight: 600;
-      color: var(--text-sub);
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .pill-btn.active {
-      background: rgba(255, 255, 255, 0.12);
-      color: var(--text-main);
-      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-    }
-
-    /* Main Card */
-    .hero-card {
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
+    .card {
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       background: var(--card-bg);
       border: 1.5px solid var(--card-border);
-      border-radius: 32px;
-      padding: 28px 24px;
+      border-radius: 28px;
+      padding: 24px 20px;
       box-shadow: var(--shadow);
       text-align: center;
       position: relative;
       overflow: hidden;
-      transition: all 0.5s ease;
     }
 
-    .hero-card::before {
-      content: '';
-      position: absolute;
-      top: -60px;
-      right: -60px;
-      width: 140px;
-      height: 140px;
-      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-      border-radius: 50%;
-      pointer-events: none;
-    }
-
-    .moon-badge {
+    .badge {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       font-weight: 600;
-      letter-spacing: 0.08em;
       text-transform: uppercase;
+      letter-spacing: 0.08em;
       color: var(--accent);
-      background: rgba(255, 255, 255, 0.06);
+      background: var(--item-bg);
       border: 1px solid var(--card-border);
-      padding: 5px 14px;
+      padding: 4px 12px;
       border-radius: 99px;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     }
 
-    .greeting-title {
+    .title {
       font-family: 'Playfair Display', serif;
-      font-size: 2.3rem;
-      font-weight: 600;
-      line-height: 1.15;
-      margin-bottom: 8px;
-      letter-spacing: -0.01em;
+      font-size: 2.2rem;
+      line-height: 1.2;
+      margin-bottom: 6px;
     }
 
-    .greeting-title span {
+    .title span {
       display: block;
-      font-style: italic;
       color: var(--accent);
-      font-size: 2.45rem;
+      font-style: italic;
     }
 
-    .recipient-tag {
-      display: inline-block;
-      margin-top: 6px;
-      font-size: 1.05rem;
+    .subtitle {
+      font-size: 0.95rem;
+      color: var(--sub);
       font-weight: 400;
-      color: var(--text-sub);
     }
 
-    /* Moon & Relaxation section */
-    .moon-section {
-      margin: 22px 0 16px;
+    .booster-wrap {
+      margin: 18px 0 10px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
 
-    .moon-glow-btn {
-      position: relative;
-      cursor: pointer;
-      width: 84px;
-      height: 84px;
+    .big-icon-btn {
+      width: 82px;
+      height: 82px;
       border-radius: 50%;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.03) 100%);
+      background: var(--item-bg);
+      border: 2px solid var(--card-border);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 25px var(--accent-glow);
-      border: 1.5px solid var(--card-border);
-      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .moon-glow-btn:active {
-      transform: scale(0.92);
-    }
-
-    .moon-icon {
       font-size: 2.5rem;
-      animation: floatMoon 3.5s ease-in-out infinite;
+      cursor: pointer;
+      box-shadow: 0 8px 20px var(--accent-glow);
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
-    @keyframes floatMoon {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-5px) rotate(4deg); }
+    .big-icon-btn:active {
+      transform: scale(0.9);
     }
 
     .tap-hint {
       font-size: 0.74rem;
+      color: var(--sub);
       font-weight: 500;
-      color: var(--text-sub);
     }
 
-    .relax-bar-wrap {
+    .meter-wrap {
       width: 100%;
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 99px;
       height: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 99px;
       overflow: hidden;
       margin-top: 4px;
     }
 
-    .relax-bar-fill {
-      width: 45%;
+    .meter-fill {
+      width: 50%;
       height: 100%;
-      background: linear-gradient(90deg, #818CF8, var(--accent));
+      background: var(--accent);
       border-radius: 99px;
-      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: width 0.3s ease;
     }
 
-    .relax-label {
-      font-size: 0.72rem;
-      font-weight: 600;
-      color: var(--text-sub);
+    .meter-info {
+      width: 100%;
       display: flex;
       justify-content: space-between;
-      width: 100%;
-      padding: 0 4px;
-    }
-
-    /* Flip Card */
-    .envelope-box {
-      perspective: 1000px;
-      margin: 10px 0;
-      cursor: pointer;
-    }
-
-    .envelope-inner {
-      position: relative;
-      width: 100%;
-      min-height: 140px;
-      text-align: center;
-      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-      transform-style: preserve-3d;
-    }
-
-    .envelope-inner.flipped {
-      transform: rotateY(180deg);
-    }
-
-    .envelope-front, .envelope-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      -webkit-backface-visibility: hidden;
-      backface-visibility: hidden;
-      border-radius: 24px;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    .envelope-front {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px dashed var(--accent);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    }
-
-    .envelope-back {
-      background: rgba(30, 27, 75, 0.85);
-      border: 1.5px solid var(--accent);
-      box-shadow: var(--shadow);
-      transform: rotateY(180deg);
-    }
-
-    .envelope-icon {
-      font-size: 2.2rem;
-      animation: pulseEnv 2.5s infinite ease-in-out;
-    }
-
-    @keyframes pulseEnv {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.08); }
-    }
-
-    .envelope-front-title {
-      font-size: 0.95rem;
+      font-size: 0.72rem;
       font-weight: 600;
-      color: var(--text-main);
+      color: var(--sub);
     }
 
-    .envelope-front-sub {
-      font-size: 0.75rem;
-      color: var(--text-sub);
+    .letter-btn {
+      width: 100%;
+      background: var(--item-bg);
+      border: 1.5px dashed var(--accent);
+      border-radius: 20px;
+      padding: 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.25s ease;
     }
 
-    .quote-text {
+    .letter-btn:active {
+      transform: scale(0.98);
+    }
+
+    .letter-icon {
+      font-size: 1.8rem;
+      margin-bottom: 4px;
+    }
+
+    .letter-prompt {
+      font-size: 0.82rem;
+      color: var(--sub);
+    }
+
+    .letter-text {
       font-family: 'Playfair Display', serif;
       font-size: 1.05rem;
       font-style: italic;
-      color: var(--text-main);
+      color: var(--text);
       line-height: 1.5;
+      display: none;
+      margin-top: 6px;
     }
 
-    .quote-author {
+    .letter-author {
       font-size: 0.75rem;
-      font-weight: 600;
       color: var(--accent);
+      font-weight: 600;
+      display: none;
       margin-top: 4px;
     }
 
-    /* Checklist */
-    .checklist-card {
+    .letter-btn.open {
+      border-style: solid;
+      background: rgba(30, 27, 75, 0.9);
+      box-shadow: var(--shadow);
+    }
+
+    .letter-btn.open .letter-prompt {
+      display: none;
+    }
+    .letter-btn.open .letter-text,
+    .letter-btn.open .letter-author {
+      display: block;
+    }
+
+    .checklist {
       backdrop-filter: blur(16px);
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      border-radius: 24px;
-      padding: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      border-radius: 22px;
+      padding: 16px 18px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.03);
     }
 
-    .checklist-title {
-      font-size: 0.86rem;
+    .checklist-hdr {
+      font-size: 0.78rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--text-sub);
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      letter-spacing: 0.06em;
+      color: var(--sub);
+      margin-bottom: 10px;
     }
 
-    .checklist-items {
+    .check-btn {
+      width: 100%;
+      background: var(--item-bg);
+      border: 1px solid var(--card-border);
+      padding: 10px 14px;
+      border-radius: 14px;
       display: flex;
-      flex-direction: column;
+      align-items: center;
       gap: 10px;
-    }
-
-    .check-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
       font-size: 0.88rem;
       font-weight: 500;
-      color: var(--text-main);
-      background: rgba(255, 255, 255, 0.04);
-      padding: 10px 14px;
-      border-radius: 16px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--text);
       cursor: pointer;
+      margin-bottom: 8px;
+      text-align: left;
       transition: all 0.2s ease;
     }
 
-    .check-item:hover {
-      background: rgba(255, 255, 255, 0.08);
-      transform: translateX(4px);
+    .check-btn:last-child {
+      margin-bottom: 0;
     }
 
-    .check-item.done {
-      text-decoration: line-through;
-      opacity: 0.5;
-    }
-
-    .check-circle {
-      width: 20px;
-      height: 20px;
+    .check-box {
+      width: 18px;
+      height: 18px;
       border-radius: 50%;
       border: 2px solid var(--accent);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 0.65rem;
-      color: #0F172A;
-      transition: all 0.2s ease;
+      color: transparent;
+      flex-shrink: 0;
     }
 
-    .check-item.done .check-circle {
+    .check-btn.checked {
+      opacity: 0.6;
+      text-decoration: line-through;
+    }
+    .check-btn.checked .check-box {
       background: var(--accent);
+      color: #0F172A;
     }
 
-    /* Actions */
-    .actions-grid {
+    .actions {
       display: flex;
-      gap: 12px;
+      gap: 10px;
     }
 
-    .btn-action {
+    .btn {
       flex: 1;
       border: none;
-      border-radius: 20px;
-      padding: 14px 18px;
-      font-size: 0.92rem;
+      padding: 14px 16px;
+      border-radius: 18px;
+      font-size: 0.9rem;
       font-weight: 600;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+      gap: 6px;
+      transition: transform 0.2s ease;
     }
 
-    .btn-action:active {
+    .btn:active {
       transform: scale(0.96);
     }
 
     .btn-hug {
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--text-main);
+      background: var(--item-bg);
+      color: var(--text);
       border: 1.5px solid var(--card-border);
-      box-shadow: 0 8px 18px rgba(0,0,0,0.2);
     }
 
     .btn-share {
       background: var(--accent);
       color: #0F172A;
-      box-shadow: 0 10px 22px var(--accent-glow);
+      box-shadow: 0 8px 20px var(--accent-glow);
     }
 
-    /* Link to morning page */
-    .nav-morning-link {
-      text-align: center;
-      margin-top: 5px;
-    }
-    .nav-morning-link a {
-      color: var(--text-sub);
-      font-size: 0.82rem;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 14px;
-      border-radius: 99px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      transition: all 0.2s ease;
-    }
-    .nav-morning-link a:hover {
-      color: var(--text-main);
-      border-color: var(--accent);
-    }
-
-    /* Floating particles */
-    .star-float {
+    .float-item {
       position: fixed;
       pointer-events: none;
-      animation: floatNight 2s forwards ease-out;
-      font-size: 1.3rem;
-      z-index: 999;
+      animation: floatUp 1.6s forwards cubic-bezier(0.2, 0.8, 0.2, 1);
+      font-size: 1.4rem;
+      z-index: 9999;
     }
 
-    @keyframes floatNight {
+    @keyframes floatUp {
       0% {
         opacity: 1;
         transform: translate(-50%, 0) scale(0.6);
       }
       50% {
-        opacity: 0.9;
-        transform: translate(-50%, -50px) scale(1.1);
+        opacity: 1;
+        transform: translate(-50%, -60px) scale(1.2);
       }
       100% {
         opacity: 0;
-        transform: translate(-50%, -100px) scale(0.7);
+        transform: translate(-50%, -120px) scale(0.8);
       }
     }
 
     footer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
       margin-top: 10px;
-      text-align: center;
-      font-size: 0.74rem;
-      color: var(--text-sub);
-      opacity: 0.6;
+    }
+
+    .footer-credit {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--sub);
+      background: var(--item-bg);
+      border: 1px solid var(--card-border);
+      padding: 8px 16px;
+      border-radius: 99px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    }
+
+    .footer-credit strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .insta-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+      text-decoration: none;
+    }
+
+    .insta-link:active {
+      transform: scale(0.88);
+    }
+
+    .insta-icon {
+      width: 22px;
+      height: 22px;
+      display: block;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
     }
   </style>
 </head>
-<body>
-  <canvas id="stars-canvas"></canvas>
+<body ontouchstart="">
+  <canvas id="bg-canvas"></canvas>
 
   <div class="container">
-    <!-- Top bar -->
-    <div class="top-bar">
-      <div class="date-badge" id="currentDate">
-        <span>🌙</span> <span>Tonight • Sweet Dreams</span>
-      </div>
-      <button class="sound-btn" id="soundBtn" onclick="toggleSound()">
-        <span id="soundIcon">🎵</span> <span id="soundText">Night Lullaby</span>
+    <div class="top-controls">
+      <div class="date-tag">🌙 Sweet Dreams Tonight</div>
+      <button class="music-btn" id="musicBtn" onclick="toggleAudio()">
+        <span id="musicIcon">🎵</span> <span id="musicText">Play Lullaby</span>
       </button>
     </div>
 
-    <!-- Theme / Vibe switcher -->
-    <div class="theme-pills">
-      <button class="pill-btn active" onclick="setTheme('default', this)">🌌 Midnight</button>
-      <button class="pill-btn" onclick="setTheme('dreamy', this)">🌙 Dreamy</button>
-      <button class="pill-btn" onclick="setTheme('cozy', this)">✨ Calm Sky</button>
-    </div>
-
-    <!-- Main Card -->
-    <div class="hero-card">
-      <div class="moon-badge">✨ Time To Rest</div>
-      <h1 class="greeting-title">
+    <div class="card">
+      <div class="badge">✨ Time To Rest</div>
+      <h1 class="title">
         Good Night,
-        <span id="greetingSpan">Sweet Dreams!</span>
+        <span>Sweet Dreams!</span>
       </h1>
-      <div class="recipient-tag">Badha tension bhuline shanti thi sui jaavo 💤</div>
+      <p class="subtitle">Badha tension bhuline shanti thi sui jaavo 💤</p>
 
-      <!-- Moon relaxation meter -->
-      <div class="moon-section">
-        <div class="moon-glow-btn" id="moonBtn" onclick="boostRelax(event)">
-          <div class="moon-icon">🌙</div>
+      <div class="booster-wrap">
+        <button class="big-icon-btn" onclick="boost(event)">🌙</button>
+        <div class="tap-hint">Tap moon to calm your mind! ☁️</div>
+        <div class="meter-wrap">
+          <div class="meter-fill" id="meterFill" style="width: 50%;"></div>
         </div>
-        <div class="tap-hint">Tap moon to relax & calm your mind ☁️</div>
-        <div class="relax-bar-wrap">
-          <div class="relax-bar-fill" id="relaxFill"></div>
-        </div>
-        <div class="relax-label">
-          <span>Bedtime Calm Level</span>
-          <span id="relaxNum">50%</span>
+        <div class="meter-info">
+          <span>Calm Level</span>
+          <span id="meterNum">50%</span>
         </div>
       </div>
     </div>
 
-    <!-- Envelope 3D Flip Card -->
-    <div class="envelope-box" onclick="flipCard()">
-      <div class="envelope-inner" id="flipCardInner">
-        <div class="envelope-front">
-          <div class="envelope-icon">💌</div>
-          <div class="envelope-front-title">Tamara mate ek sweet night message...</div>
-          <div class="envelope-front-sub">Tap to open & read 💫</div>
-        </div>
-        <div class="envelope-back">
-          <p class="quote-text" id="quoteDisplay">
-            "Aakho divas joi lidho, have aakho bandh karo ane tarao ni jem shant rahi ne mithi nindar lyo."
-          </p>
-          <div class="quote-author">— Sleep peacefully & take care 💖</div>
-        </div>
+    <button class="letter-btn" id="letterBtn" onclick="toggleLetter()">
+      <div class="letter-icon">💌</div>
+      <div class="letter-prompt">Tamara mate ek sweet night message... 💫</div>
+      <div class="letter-text">
+        "Aakho divas joi lidho, have aakho bandh karo ane tarao ni jem shant rahi ne mithi nindar lyo."
       </div>
-    </div>
+      <div class="letter-author">— Sleep peacefully & take care 💖</div>
+    </button>
 
-    <!-- Bedtime Checklist -->
-    <div class="checklist-card">
-      <div class="checklist-title">
-        <span>✨</span> <span>Suta pela simple steps</span>
-      </div>
-      <div class="checklist-items">
-        <div class="check-item" onclick="toggleCheck(this)">
-          <div class="check-circle">✓</div>
-          <span>Phone thodo baaju ma mukvo 📱</span>
-        </div>
-        <div class="check-item" onclick="toggleCheck(this)">
-          <div class="check-circle">✓</div>
-          <span>Aajna divas no aabhar manvo 🙏</span>
-        </div>
-        <div class="check-item" onclick="toggleCheck(this)">
-          <div class="check-circle">✓</div>
-          <span>Mitha sapna sathe shanti thi sui javu 😴</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Actions -->
-    <div class="actions-grid">
-      <button class="btn-action btn-hug" onclick="sendNightCare(event)">
-        <span>🤗</span> <span>Send Warm Hug</span>
+    <div class="checklist">
+      <div class="checklist-hdr">✨ Suta pela na simple steps</div>
+      <button class="check-btn" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <span>Phone thodo baaju ma mukvo 📱</span>
       </button>
-      <button class="btn-action btn-share" onclick="shareWhatsApp()">
-        <span>📲</span> <span>Share on WhatsApp</span>
+      <button class="check-btn" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <span>Aajna divas no aabhar manvo 🙏</span>
+      </button>
+      <button class="check-btn" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <span>Mitha sapna sathe shanti thi sui javu 😴</span>
       </button>
     </div>
 
-    <div class="nav-morning-link">
-      <a href="good_morning.html">☀️ Go to Good Morning page</a>
+    <div class="actions">
+      <button class="btn btn-hug" onclick="sendHug(event)">
+        <span>🤗</span> <span>Send Hug</span>
+      </button>
+      <button class="btn btn-share" onclick="shareWhatsApp()">
+        <span>📲</span> <span>Share</span>
+      </button>
     </div>
 
     <footer>
-      Crafted with warmth & sweet dreams ✨
+      <div class="footer-credit">
+        <span>Made with ❤️ by <strong>Bhargav</strong></span>
+        <a href="https://www.instagram.com/bhargav_ahir_9082" target="_blank" rel="noopener noreferrer" class="insta-link" title="Instagram">
+          <svg class="insta-icon" viewBox="0 0 24 24">
+            <defs>
+              <linearGradient id="instaGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#f09433"/>
+                <stop offset="25%" stop-color="#e6683c"/>
+                <stop offset="50%" stop-color="#dc2743"/>
+                <stop offset="75%" stop-color="#cc2366"/>
+                <stop offset="100%" stop-color="#bc1888"/>
+              </linearGradient>
+            </defs>
+            <path fill="url(#instaGrad)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+        </a>
+      </div>
     </footer>
   </div>
 
   <script>
-    // Theme Switcher
-    const quotes = {
-      default: '"Aakho divas joi lidho, have aakho bandh karo ane tarao ni jem shant rahi ne mithi nindar lyo. 🌙✨"',
-      dreamy: '"Nava sapna, navi umed... Kaal no divas pan mast jashe! Shanti thi sui jaavo. 🌸💤"',
-      cozy: '"Badha vicharo ne pause karo, have rest karvano time che. Sleep well! ☁️🛌"'
-    };
-
-    function setTheme(theme, btn) {
-      document.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      if (theme === 'default') {
-        document.documentElement.removeAttribute('data-theme');
-      } else {
-        document.documentElement.setAttribute('data-theme', theme);
-      }
-      document.getElementById('quoteDisplay').innerText = quotes[theme];
-      playChime(329.63);
-    }
-
-    // Relax Booster
-    let relax = 50;
-    function boostRelax(e) {
-      if (relax < 100) {
-        relax = Math.min(100, relax + 10);
-      } else {
-        relax = 100;
-      }
-      document.getElementById('relaxFill').style.width = relax + '%';
-      document.getElementById('relaxNum').innerText = relax + '%';
-      spawnStarFloat(e.clientX, e.clientY, relax === 100 ? '💤 100% Sleepy' : '✨ +10% Calm');
-      playChime(261.63 + (relax * 2));
-    }
-
-    // Flip Card
-    function flipCard() {
-      const card = document.getElementById('flipCardInner');
-      card.classList.toggle('flipped');
-      playChime(392.00);
-    }
-
-    // Checklist
-    function toggleCheck(el) {
-      el.classList.toggle('done');
-      playChime(440);
-    }
-
-    // Floating particles
-    function spawnStarFloat(x, y, text = '✨') {
-      const el = document.createElement('div');
-      el.className = 'star-float';
-      el.innerText = text;
-      el.style.left = (x || window.innerWidth / 2) + 'px';
-      el.style.top = (y || window.innerHeight / 2) + 'px';
-      document.body.appendChild(el);
-      setTimeout(() => el.remove(), 2000);
-    }
-
-    function sendNightCare(e) {
-      const x = e.clientX || window.innerWidth / 2;
-      const y = e.clientY || window.innerHeight / 2;
-      for (let i = 0; i < 6; i++) {
-        setTimeout(() => {
-          const offsetX = (Math.random() - 0.5) * 80;
-          spawnStarFloat(x + offsetX, y, ['🌙', '⭐', '😴', '💖', '☁️'][Math.floor(Math.random() * 5)]);
-        }, i * 120);
-      }
-      playChime(349.23);
-    }
-
-    // WhatsApp Share
-    function shareWhatsApp() {
-      const text = encodeURIComponent("Good Night! 🌙 Aaje aakho divas saras gayo, have tension vagar shanti thi sui jaavo: " + window.location.href);
-      window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
-    }
-
-    // Web Audio API Synthesizer (Lullaby Chords)
+    let calmLevel = 50;
     let audioCtx = null;
     let isPlaying = false;
-    let nightInterval = null;
+    let toneTimer = null;
 
-    function getAudioContext() {
+    function getAudioCtx() {
       if (!audioCtx) {
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       }
@@ -742,133 +534,133 @@
       return audioCtx;
     }
 
-    function playChime(freq = 440) {
+    function playTone(freq) {
       try {
-        const ctx = getAudioContext();
+        const ctx = getAudioCtx();
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
         osc.type = 'sine';
         osc.frequency.setValueAtTime(freq, ctx.currentTime);
-        
-        gain.gain.setValueAtTime(0.08, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 1.5);
-
+        gain.gain.setValueAtTime(0.12, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.8);
         osc.connect(gain);
         gain.connect(ctx.destination);
         osc.start();
-        osc.stop(ctx.currentTime + 1.5);
-      } catch(e) {}
+        osc.stop(ctx.currentTime + 0.8);
+      } catch (e) {}
     }
 
-    // Night dream chords
-    const dreamChords = [
-      [220.00, 261.63, 329.63, 392.00], // Am7
-      [174.61, 220.00, 261.63, 329.63], // Fmaj7
-      [261.63, 329.63, 392.00, 493.88], // Cmaj7
-      [196.00, 246.94, 293.66, 349.23]  // G
-    ];
-    let chordIndex = 0;
-
-    function playDreamChord() {
-      if (!isPlaying) return;
-      const ctx = getAudioContext();
-      const chord = dreamChords[chordIndex % dreamChords.length];
-      chordIndex++;
-
-      chord.forEach((freq, idx) => {
+    const nightNotes = [220.00, 261.63, 329.63, 440.00];
+    function playScale() {
+      nightNotes.forEach((f, idx) => {
         setTimeout(() => {
-          if (!isPlaying) return;
-          const osc = ctx.createOscillator();
-          const gain = ctx.createGain();
-          const filter = ctx.createBiquadFilter();
-
-          osc.type = 'sine';
-          osc.frequency.setValueAtTime(freq, ctx.currentTime);
-
-          filter.type = 'lowpass';
-          filter.frequency.setValueAtTime(600, ctx.currentTime);
-
-          gain.gain.setValueAtTime(0.035, ctx.currentTime);
-          gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 3.0);
-
-          osc.connect(filter);
-          filter.connect(gain);
-          gain.connect(ctx.destination);
-
-          osc.start();
-          osc.stop(ctx.currentTime + 3.1);
-        }, idx * 100);
+          if (isPlaying) playTone(f);
+        }, idx * 180);
       });
     }
 
-    function toggleSound() {
-      const btn = document.getElementById('soundBtn');
+    function toggleAudio() {
+      const btn = document.getElementById('musicBtn');
+      const txt = document.getElementById('musicText');
       if (!isPlaying) {
         isPlaying = true;
         btn.classList.add('playing');
-        document.getElementById('soundText').innerText = 'Playing 🎶';
-        playDreamChord();
-        nightInterval = setInterval(playDreamChord, 3600);
+        txt.innerText = 'Playing 🎶';
+        playScale();
+        toneTimer = setInterval(playScale, 3000);
       } else {
         isPlaying = false;
         btn.classList.remove('playing');
-        document.getElementById('soundText').innerText = 'Night Lullaby';
-        clearInterval(nightInterval);
+        txt.innerText = 'Play Lullaby';
+        clearInterval(toneTimer);
       }
     }
 
-    // Canvas Twinkling Stars
-    const canvas = document.getElementById('stars-canvas');
+    function boost(e) {
+      if (calmLevel < 100) {
+        calmLevel += 10;
+      } else {
+        calmLevel = 100;
+      }
+      document.getElementById('meterFill').style.width = calmLevel + '%';
+      document.getElementById('meterNum').innerText = calmLevel + '%';
+      spawnParticle(e.clientX, e.clientY, calmLevel === 100 ? '💤 Sleepy' : '🌙 +10%');
+      playTone(260 + (calmLevel * 2));
+    }
+
+    function toggleLetter() {
+      document.getElementById('letterBtn').classList.toggle('open');
+      playTone(520);
+    }
+
+    function toggleCheck(btn) {
+      btn.classList.toggle('checked');
+      playTone(600);
+    }
+
+    function spawnParticle(x, y, text) {
+      const el = document.createElement('div');
+      el.className = 'float-item';
+      el.innerText = text;
+      el.style.left = (x || (window.innerWidth / 2)) + 'px';
+      el.style.top = (y || (window.innerHeight / 2)) + 'px';
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 1600);
+    }
+
+    function sendHug(e) {
+      const x = e.clientX || (window.innerWidth / 2);
+      const y = e.clientY || (window.innerHeight / 2);
+      const icons = ['🤗', '🌙', '⭐', '😴', '☁️'];
+      for (let i = 0; i < 6; i++) {
+        setTimeout(() => {
+          const offX = (Math.random() - 0.5) * 80;
+          spawnParticle(x + offX, y, icons[Math.floor(Math.random() * icons.length)]);
+        }, i * 100);
+      }
+      playTone(587.33);
+    }
+
+    function shareWhatsApp() {
+      const msg = "Good Night! 🌙 Sweet dreams & take care, check karo: " + window.location.href;
+      window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(msg), '_blank');
+    }
+
+    const canvas = document.getElementById('bg-canvas');
     const ctx = canvas.getContext('2d');
-    let width, height;
-    const stars = [];
+    let w, h;
+    const dots = [];
 
     function resize() {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
     }
     window.addEventListener('resize', resize);
     resize();
 
-    class Star {
-      constructor() {
-        this.reset();
-      }
-      reset() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.size = Math.random() * 1.8 + 0.6;
-        this.opacity = Math.random() * 0.7 + 0.3;
-        this.speed = Math.random() * 0.02 + 0.005;
-        this.factor = 1;
-      }
-      update() {
-        this.opacity += this.speed * this.factor;
-        if (this.opacity > 1 || this.opacity < 0.2) {
-          this.factor = -this.factor;
-        }
-      }
-      draw() {
-        ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-
-    for (let i = 0; i < 50; i++) {
-      stars.push(new Star());
-    }
-
-    function animate() {
-      ctx.clearRect(0, 0, width, height);
-      stars.forEach(s => {
-        s.update();
-        s.draw();
+    for (let i = 0; i < 35; i++) {
+      dots.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: Math.random() * 2 + 1,
+        vy: -(Math.random() * 0.4 + 0.2),
+        alpha: Math.random() * 0.5 + 0.2
       });
-      requestAnimationFrame(animate);
     }
-    animate();
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+      dots.forEach(d => {
+        d.y += d.vy;
+        if (d.y < 0) d.y = h;
+        ctx.beginPath();
+        ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      requestAnimationFrame(draw);
+    }
+    draw();
   </script>
 </body>
 </html>
