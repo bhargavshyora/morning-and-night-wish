@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Aesthetic Good Morning ✨</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #FFF6F0 0%, #FFE9DE 45%, #F0E6FF 100%);
+      --card-bg: rgba(255, 255, 255, 0.65);
+      --card-border: rgba(255, 255, 255, 0.85);
+      --text-main: #2D2522;
+      --text-sub: #7A6B65;
+      --accent: #E07A5F;
+      --accent-glow: rgba(224, 122, 95, 0.35);
+      --tag-bg: rgba(255, 255, 255, 0.8);
+      --shadow: 0 20px 40px -15px rgba(224, 122, 95, 0.15), 0 10px 25px -10px rgba(80, 50, 40, 0.08);
+    }
+
+    [data-theme="energy"] {
+      --bg-gradient: linear-gradient(135deg, #F0FBF7 0%, #E2F8EE 45%, #FFF9E6 100%);
+      --card-bg: rgba(255, 255, 255, 0.7);
+      --card-border: rgba(255, 255, 255, 0.9);
+      --text-main: #1C332A;
+      --text-sub: #557568;
+      --accent: #2A9D8F;
+      --accent-glow: rgba(42, 157, 143, 0.35);
+      --shadow: 0 20px 40px -15px rgba(42, 157, 143, 0.18), 0 10px 25px -10px rgba(20, 60, 50, 0.08);
+    }
+
+    [data-theme="sunshine"] {
+      --bg-gradient: linear-gradient(135deg, #FFFDF0 0%, #FEF3C7 50%, #FFE4E6 100%);
+      --card-bg: rgba(255, 255, 255, 0.72);
+      --card-border: rgba(255, 255, 255, 0.92);
+      --text-main: #362819;
+      --text-sub: #7C674E;
+      --accent: #F59E0B;
+      --accent-glow: rgba(245, 158, 11, 0.38);
+      --shadow: 0 20px 40px -15px rgba(245, 158, 11, 0.2), 0 10px 25px -10px rgba(70, 50, 20, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg-gradient);
+      font-family: 'Outfit', sans-serif;
+      color: var(--text-main);
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 24px 16px 40px;
+      transition: background 0.8s ease;
+      position: relative;
+    }
+
+    #particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 440px;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Top bar */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 99px;
+      padding: 8px 16px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.03);
+    }
+
+    .date-badge {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-sub);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .sound-btn {
+      background: var(--tag-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 99px;
+      padding: 6px 12px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--accent);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.25s ease;
+    }
+    .sound-btn:active {
+      transform: scale(0.95);
+    }
+    .sound-btn.playing {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 4px 12px var(--accent-glow);
+    }
+
+    /* Theme switcher */
+    .theme-pills {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.45);
+      padding: 5px;
+      border-radius: 99px;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(10px);
+    }
+
+    .pill-btn {
+      border: none;
+      background: transparent;
+      padding: 6px 14px;
+      border-radius: 99px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--text-sub);
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .pill-btn.active {
+      background: #FFFFFF;
+      color: var(--accent);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+    }
+
+    /* Main Hero Card */
+    .hero-card {
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      background: var(--card-bg);
+      border: 1.5px solid var(--card-border);
+      border-radius: 32px;
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.5s ease;
+    }
+
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 140px;
+      height: 140px;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .sun-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid var(--card-border);
+      padding: 5px 14px;
+      border-radius: 99px;
+      margin-bottom: 16px;
+    }
+
+    .greeting-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.3rem;
+      font-weight: 600;
+      line-height: 1.15;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .greeting-title span {
+      display: block;
+      font-style: italic;
+      color: var(--accent);
+      font-size: 2.45rem;
+    }
+
+    .recipient-tag {
+      display: inline-block;
+      margin-top: 6px;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--text-sub);
+    }
+
+    /* Interactive Coffee Energy Booster */
+    .coffee-section {
+      margin: 22px 0 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .cup-container {
+      position: relative;
+      cursor: pointer;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 12px 24px -6px var(--accent-glow), 0 4px 10px rgba(0,0,0,0.04);
+      border: 2px solid var(--card-border);
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .cup-container:active {
+      transform: scale(0.92);
+    }
+
+    .cup-icon {
+      font-size: 2.3rem;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.06));
+      animation: floatCup 3s ease-in-out infinite;
+    }
+
+    @keyframes floatCup {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    .tap-hint {
+      font-size: 0.74rem;
+      font-weight: 500;
+      color: var(--text-sub);
+      opacity: 0.85;
+    }
+
+    .energy-bar-wrap {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.05);
+      border-radius: 99px;
+      height: 8px;
+      overflow: hidden;
+      margin-top: 4px;
+      position: relative;
+    }
+
+    .energy-bar-fill {
+      width: 40%;
+      height: 100%;
+      background: linear-gradient(90deg, #FDE68A, var(--accent));
+      border-radius: 99px;
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .energy-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-sub);
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      padding: 0 4px;
+    }
+
+    /* Flip Card (Letter / Note) */
+    .envelope-box {
+      perspective: 1000px;
+      margin: 10px 0;
+      cursor: pointer;
+    }
+
+    .envelope-inner {
+      position: relative;
+      width: 100%;
+      min-height: 140px;
+      text-align: center;
+      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-style: preserve-3d;
+    }
+
+    .envelope-inner.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .envelope-front, .envelope-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      border-radius: 24px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .envelope-front {
+      background: linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.55) 100%);
+      border: 1px dashed var(--accent);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+    }
+
+    .envelope-back {
+      background: #FFFFFF;
+      border: 1.5px solid var(--accent);
+      box-shadow: var(--shadow);
+      transform: rotateY(180deg);
+    }
+
+    .envelope-icon {
+      font-size: 2.2rem;
+      animation: pulseEnv 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseEnv {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
+    .envelope-front-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .envelope-front-sub {
+      font-size: 0.75rem;
+      color: var(--text-sub);
+    }
+
+    .quote-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+
+    .quote-author {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-top: 4px;
+    }
+
+    /* Wish Checklist */
+    .checklist-card {
+      backdrop-filter: blur(16px);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+    }
+
+    .checklist-title {
+      font-size: 0.86rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-sub);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .checklist-items {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.6);
+      padding: 10px 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .check-item:hover {
+      background: #FFFFFF;
+      transform: translateX(4px);
+    }
+
+    .check-item.done {
+      text-decoration: line-through;
+      opacity: 0.55;
+    }
+
+    .check-circle {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      color: #fff;
+      transition: all 0.2s ease;
+    }
+
+    .check-item.done .check-circle {
+      background: var(--accent);
+    }
+
+    /* Actions */
+    .actions-grid {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn-action {
+      flex: 1;
+      border: none;
+      border-radius: 20px;
+      padding: 14px 18px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .btn-action:active {
+      transform: scale(0.96);
+    }
+
+    .btn-hug {
+      background: #FFFFFF;
+      color: var(--accent);
+      border: 1.5px solid var(--accent);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.04);
+    }
+
+    .btn-share {
+      background: var(--accent);
+      color: #FFFFFF;
+      box-shadow: 0 10px 22px var(--accent-glow);
+    }
+
+    /* Floating heart animation */
+    .heart-float {
+      position: fixed;
+      pointer-events: none;
+      animation: floatUp 1.8s forwards ease-out;
+      font-size: 1.4rem;
+      z-index: 999;
+    }
+
+    @keyframes floatUp {
+      0% {
+        opacity: 1;
+        transform: translate(-50%, 0) scale(0.6);
+      }
+      50% {
+        opacity: 0.9;
+        transform: translate(-50%, -60px) scale(1.2);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -120px) scale(0.8);
+      }
+    }
+
+    footer {
+      margin-top: 10px;
+      text-align: center;
+      font-size: 0.74rem;
+      color: var(--text-sub);
+      opacity: 0.75;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="particles"></canvas>
+
+  <div class="container">
+    <!-- Top bar -->
+    <div class="top-bar">
+      <div class="date-badge" id="currentDate">
+        <span>☀️</span> <span>Today • Morning Vibes</span>
+      </div>
+      <button class="sound-btn" id="soundBtn" onclick="toggleSound()">
+        <span id="soundIcon">🎵</span> <span id="soundText">Morning Lo-Fi</span>
+      </button>
+    </div>
+
+    <!-- Theme / Vibe switcher -->
+    <div class="theme-pills">
+      <button class="pill-btn active" onclick="setTheme('default', this)">☕ Cozy Lo-Fi</button>
+      <button class="pill-btn" onclick="setTheme('energy', this)">🌿 Fresh Vibes</button>
+      <button class="pill-btn" onclick="setTheme('sunshine', this)">☀️ Calm Sunny</button>
+    </div>
+
+    <!-- Main Card -->
+    <div class="hero-card">
+      <div class="sun-badge">✨ Fresh New Day</div>
+      <h1 class="greeting-title">
+        Good Morning,
+        <span id="greetingSpan">Beautiful Soul!</span>
+      </h1>
+      <div class="recipient-tag">Aa divas tamara mate ekdam mast rahe! 🌸</div>
+
+      <!-- Coffee booster -->
+      <div class="coffee-section">
+        <div class="cup-container" id="coffeeCup" onclick="boostEnergy(event)">
+          <div class="cup-icon">☕</div>
+        </div>
+        <div class="tap-hint">Tap cup for fresh morning energy! ✨</div>
+        <div class="energy-bar-wrap">
+          <div class="energy-bar-fill" id="energyFill"></div>
+        </div>
+        <div class="energy-label">
+          <span>Morning Vibe Level</span>
+          <span id="energyNum">60%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Envelope 3D Flip Card -->
+    <div class="envelope-box" onclick="flipCard()">
+      <div class="envelope-inner" id="flipCardInner">
+        <div class="envelope-front">
+          <div class="envelope-icon">💌</div>
+          <div class="envelope-front-title">Tamara mate ek sweet morning note...</div>
+          <div class="envelope-front-sub">Tap to open & read 💫</div>
+        </div>
+        <div class="envelope-back">
+          <p class="quote-text" id="quoteDisplay">
+            "Smile karo, ek cup chai/coffee piyo ane aaje potana sapna mate ek navu paglu bharo!"
+          </p>
+          <div class="quote-author">— Have a wonderful day ahead 💖</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Morning Checklist -->
+    <div class="checklist-card">
+      <div class="checklist-title">
+        <span>🌸</span> <span>Aajna divas nu simple goal</span>
+      </div>
+      <div class="checklist-items">
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="check-circle">✓</div>
+          <span>Uthine saras smile karvi 😊</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="check-circle">✓</div>
+          <span>Chai / Coffee no mast ghoont ☕</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="check-circle">✓</div>
+          <span>Poora divas positive & khush rahevu 🌻</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="actions-grid">
+      <button class="btn-action btn-hug" onclick="sendWarmHug(event)">
+        <span>🤗</span> <span>Send Warm Hug</span>
+      </button>
+      <button class="btn-action btn-share" onclick="shareWhatsApp()">
+        <span>📲</span> <span>Share on WhatsApp</span>
+      </button>
+    </div>
+
+    <footer>
+      Crafted with warmth & good vibes ✨
+    </footer>
+  </div>
+
+  <script>
+    // Live date format
+    function updateDate() {
+      const now = new Date();
+      const options = { weekday: 'short', month: 'short', day: 'numeric' };
+      const dateStr = now.toLocaleDateString('en-US', options);
+      document.getElementById('currentDate').innerHTML = `<span>☀️</span> <span>${dateStr}</span>`;
+    }
+    updateDate();
+
+    // Theme Switcher
+    const quotes = {
+      default: '"Smile karo, ek cup chai/coffee piyo ane aaje potana sapna mate ek navu paglu bharo! ☕✨"',
+      energy: '"Nava divas sathe navi energy! Potana target par focus karo ane rock karo! 🌿💪"',
+      sunshine: '"Tamari aaspas hamesha aam j chamak ane positive sunlight bani rahe! ☀️🌻"'
+    };
+
+    function setTheme(theme, btn) {
+      document.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      if (theme === 'default') {
+        document.documentElement.removeAttribute('data-theme');
+      } else {
+        document.documentElement.setAttribute('data-theme', theme);
+      }
+      document.getElementById('quoteDisplay').innerText = quotes[theme];
+      playChime(440);
+    }
+
+    // Energy Booster
+    let energy = 60;
+    function boostEnergy(e) {
+      if (energy < 100) {
+        energy = Math.min(100, energy + 10);
+      } else {
+        energy = 100;
+      }
+      document.getElementById('energyFill').style.width = energy + '%';
+      document.getElementById('energyNum').innerText = energy + '%';
+      spawnFloatingHeart(e.clientX, e.clientY, energy === 100 ? '⚡ 100%' : '☕ +10%');
+      playChime(300 + (energy * 3));
+    }
+
+    // Flip Card
+    function flipCard() {
+      const card = document.getElementById('flipCardInner');
+      card.classList.toggle('flipped');
+      playChime(520);
+    }
+
+    // Checklist
+    function toggleCheck(el) {
+      el.classList.toggle('done');
+      playChime(660);
+    }
+
+    // Floating heart / text
+    function spawnFloatingHeart(x, y, text = '💖') {
+      const el = document.createElement('div');
+      el.className = 'heart-float';
+      el.innerText = text;
+      el.style.left = (x || window.innerWidth / 2) + 'px';
+      el.style.top = (y || window.innerHeight / 2) + 'px';
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 1800);
+    }
+
+    function sendWarmHug(e) {
+      const x = e.clientX || window.innerWidth / 2;
+      const y = e.clientY || window.innerHeight / 2;
+      for (let i = 0; i < 6; i++) {
+        setTimeout(() => {
+          const offsetX = (Math.random() - 0.5) * 80;
+          spawnFloatingHeart(x + offsetX, y, ['🤗', '💖', '✨', '🌸'][Math.floor(Math.random() * 4)]);
+        }, i * 120);
+      }
+      playChime(587.33);
+    }
+
+    // WhatsApp Share
+    function shareWhatsApp() {
+      const text = encodeURIComponent("Good Morning! ☀️ Aaje tamara mate ek special morning wish page banavyu che, check karo: " + window.location.href);
+      window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+    }
+
+    // Web Audio API Synthesizer (Lo-Fi Chimes & Rhodes)
+    let audioCtx = null;
+    let isPlaying = false;
+    let loFiInterval = null;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playChime(freq = 440) {
+      try {
+        const ctx = getAudioContext();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        
+        gain.gain.setValueAtTime(0.12, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 1.2);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 1.2);
+      } catch(e) {}
+    }
+
+    // Lo-Fi Chord progressions
+    const lofiChords = [
+      [261.63, 329.63, 392.00, 
