@@ -19,8 +19,8 @@
 
     :root {
       --bg: linear-gradient(135deg, #FFF5EC 0%, #FFE8DB 50%, #F5E8FF 100%);
-      --card-bg: rgba(255, 255, 255, 0.75);
-      --card-border: rgba(255, 255, 255, 0.9);
+      --card-bg: rgba(255, 255, 255, 0.78);
+      --card-border: rgba(255, 255, 255, 0.95);
       --text: #2D2420;
       --sub: #7A6962;
       --accent: #E07A5F;
@@ -31,7 +31,7 @@
 
     body.night-mode {
       --bg: radial-gradient(circle at 50% 15%, #1E1B4B 0%, #0F172A 60%, #030712 100%);
-      --card-bg: rgba(30, 27, 75, 0.6);
+      --card-bg: rgba(30, 27, 75, 0.65);
       --card-border: rgba(255, 255, 255, 0.15);
       --text: #F8FAFC;
       --sub: #94A3B8;
@@ -49,10 +49,37 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 20px 16px 40px;
+      padding: 50px 16px 40px;
       transition: background 0.6s ease;
       position: relative;
       overflow-x: hidden;
+    }
+
+    /* Fixed Top Corner Creator Badge */
+    .top-creator-badge {
+      position: absolute;
+      top: 14px;
+      left: 16px;
+      z-index: 10;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--sub);
+      background: var(--item-bg);
+      border: 1px solid var(--card-border);
+      padding: 5px 12px;
+      border-radius: 99px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+      text-decoration: none;
+    }
+
+    .top-creator-badge strong {
+      color: var(--accent);
+      font-weight: 700;
     }
 
     canvas {
@@ -119,7 +146,7 @@
       box-shadow: 0 4px 12px var(--accent-glow);
     }
 
-    /* Sound Pill */
+    /* Sound Pill & Date */
     .top-controls {
       display: flex;
       justify-content: space-between;
@@ -170,11 +197,30 @@
       overflow: hidden;
     }
 
+    .sender-banner {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text);
+      background: var(--item-bg);
+      border: 1px solid var(--card-border);
+      padding: 5px 14px;
+      border-radius: 99px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    .sender-banner strong {
+      color: var(--accent);
+    }
+
     .badge {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.08em;
@@ -205,7 +251,7 @@
       font-weight: 400;
     }
 
-    /* Interactive Big Booster */
+    /* Booster */
     .booster-wrap {
       margin: 18px 0 10px;
       display: flex;
@@ -268,7 +314,7 @@
       color: var(--sub);
     }
 
-    /* Message Letter Card (Clickable) */
+    /* Message Letter Card */
     .letter-btn {
       width: 100%;
       background: var(--item-bg);
@@ -395,7 +441,7 @@
       color: #0F172A;
     }
 
-    /* Action Buttons */
+    /* Actions */
     .actions {
       display: flex;
       gap: 10px;
@@ -435,7 +481,152 @@
       color: #0F172A;
     }
 
-    /* Floating Heart/Star Particle */
+    /* Create Your Own Wish Link Box */
+    .create-link-box {
+      width: 100%;
+      backdrop-filter: blur(16px);
+      background: var(--card-bg);
+      border: 1.5px dashed var(--accent);
+      border-radius: 24px;
+      padding: 18px 16px;
+      text-align: center;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.03);
+    }
+
+    .create-link-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .create-link-desc {
+      font-size: 0.78rem;
+      color: var(--sub);
+      margin-bottom: 12px;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--card-border);
+      background: var(--item-bg);
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.88rem;
+      margin-bottom: 8px;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .input-field:focus {
+      border-color: var(--accent);
+    }
+
+    .input-field::placeholder {
+      color: var(--sub);
+      opacity: 0.7;
+    }
+
+    .btn-create-link {
+      width: 100%;
+      padding: 12px;
+      border-radius: 14px;
+      background: var(--accent);
+      color: #FFFFFF;
+      font-weight: 700;
+      font-size: 0.88rem;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 0 4px 14px var(--accent-glow);
+      transition: transform 0.2s ease;
+    }
+
+    body.night-mode .btn-create-link {
+      color: #0F172A;
+    }
+
+    .btn-create-link:active {
+      transform: scale(0.97);
+    }
+
+    /* Footer with Creator Credit and Instagram */
+    footer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .footer-credit-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer-credit {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      font-weight: 500;
+      color: var(--sub);
+      background: var(--item-bg);
+      border: 1px solid var(--card-border);
+      padding: 8px 16px;
+      border-radius: 99px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    }
+
+    .footer-credit strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .creator-tag {
+      font-size: 0.75rem;
+      color: var(--sub);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .creator-tag a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .insta-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+      text-decoration: none;
+    }
+
+    .insta-link:active {
+      transform: scale(0.88);
+    }
+
+    .insta-icon {
+      width: 20px;
+      height: 20px;
+      display: block;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    }
+
+    /* Floating Particles */
     .float-item {
       position: fixed;
       pointer-events: none;
@@ -459,58 +650,192 @@
       }
     }
 
-    /* Footer & Instagram Credit */
-    footer {
+    /* Mega Emoji Blast */
+    .mega-emoji {
+      position: fixed;
+      pointer-events: none;
+      z-index: 99999;
+      font-size: 2.2rem;
+      animation: megaFly 1.8s forwards cubic-bezier(0.15, 0.85, 0.35, 1);
+    }
+
+    @keyframes megaFly {
+      0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(0.3) rotate(0deg);
+      }
+      50% {
+        opacity: 1;
+        transform: translate(calc(-50% + var(--vx)), calc(-50% + var(--vy))) scale(1.4) rotate(var(--rot));
+      }
+      100% {
+        opacity: 0;
+        transform: translate(calc(-50% + var(--vx) * 1.3), calc(-50% + var(--vy) * 1.3 + 90px)) scale(0.8) rotate(calc(var(--rot) * 1.8));
+      }
+    }
+
+    /* Sweet Hug Popup Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      padding: 20px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-overlay.show {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-card {
+      background: var(--card-bg);
+      border: 1.5px solid var(--card-border);
+      border-radius: 26px;
+      padding: 26px 20px;
+      max-width: 330px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      transform: scale(0.85);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .modal-overlay.show .modal-card {
+      transform: scale(1);
+    }
+
+    .modal-emoji {
+      font-size: 3rem;
+      margin-bottom: 6px;
+      display: inline-block;
+      animation: heartbeat 1.2s infinite alternate ease-in-out;
+    }
+
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.15); }
+    }
+
+    .modal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.45rem;
+      margin-bottom: 6px;
+      color: var(--accent);
+    }
+
+    .modal-msg {
+      font-size: 0.88rem;
+      color: var(--text);
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .quick-emojis {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .emoji-pill {
+      background: var(--item-bg);
+      border: 1px solid var(--card-border);
+      font-size: 1.3rem;
+      border-radius: 99px;
+      padding: 6px 10px;
+      cursor: pointer;
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .emoji-pill:active {
+      transform: scale(1.35);
+    }
+
+    .modal-actions {
       display: flex;
       flex-direction: column;
+      gap: 10px;
+    }
+
+    .modal-btn {
+      width: 100%;
+      padding: 12px;
+      border-radius: 14px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      cursor: pointer;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      margin-top: 10px;
-    }
-
-    .footer-credit {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--sub);
-      background: var(--item-bg);
-      border: 1px solid var(--card-border);
-      padding: 8px 16px;
-      border-radius: 99px;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.04);
-    }
-
-    .footer-credit strong {
-      color: var(--text);
-      font-weight: 600;
-    }
-
-    .insta-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
       text-decoration: none;
+      border: none;
+      transition: transform 0.2s ease;
     }
 
-    .insta-link:active {
-      transform: scale(0.88);
+    .modal-btn:active {
+      transform: scale(0.96);
     }
 
-    .insta-icon {
-      width: 22px;
-      height: 22px;
-      display: block;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    .modal-btn.ig-btn {
+      background: linear-gradient(45deg, #f09433, #dc2743, #bc1888);
+      color: #ffffff;
+      box-shadow: 0 6px 16px rgba(220, 39, 67, 0.35);
+    }
+
+    .modal-btn.close-btn {
+      background: var(--item-bg);
+      color: var(--sub);
+      border: 1px solid var(--card-border);
+    }
+
+    /* Toast Notification */
+    .toast-msg {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(90px);
+      background: rgba(15, 23, 42, 0.94);
+      color: #FFFFFF;
+      padding: 12px 22px;
+      border-radius: 99px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      border: 1.5px solid rgba(255, 255, 255, 0.2);
+      z-index: 100002;
+      opacity: 0;
+      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .toast-msg.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
     }
   </style>
 </head>
 <body ontouchstart="">
+  <!-- Fixed Top Left Corner Creator Badge -->
+  <a href="https://www.instagram.com/bhargav_ahir_9082" target="_blank" rel="noopener noreferrer" class="top-creator-badge">
+    <span>Crafted by</span> <strong>Bhargav 👑</strong>
+  </a>
+
   <canvas id="bg-canvas"></canvas>
 
   <div class="container">
@@ -530,6 +855,11 @@
 
     <!-- Main Card -->
     <div class="card">
+      <!-- Sender Banner (Shows if sent by a friend) -->
+      <div class="sender-banner" id="senderBanner">
+        <span>A Special Wish From</span> <strong id="senderNameDisplay">Bhargav</strong> ✨
+      </div>
+
       <div class="badge" id="badgeText">✨ Fresh New Day</div>
       <h1 class="title" id="mainTitle">
         Good Morning,
@@ -578,7 +908,7 @@
       </button>
     </div>
 
-    <!-- Actions -->
+    <!-- Actions (Send Hug + Share) -->
     <div class="actions">
       <button class="btn btn-hug" onclick="sendHug(event)">
         <span>🤗</span> <span>Send Hug</span>
@@ -588,33 +918,97 @@
       </button>
     </div>
 
-    <!-- Footer with Name & Instagram Logo -->
+    <!-- Create Custom Link Box -->
+    <div class="create-link-box">
+      <div class="create-link-title">✨ Tamare potani link banavvi che?</div>
+      <p class="create-link-desc">Tamaru naam & Insta ID lakhi ne potani custom link banao!</p>
+      <input type="text" id="customNameInput" class="input-field" placeholder="Tamaru Naam lakho (e.g. Rahul)">
+      <input type="text" id="customIgInput" class="input-field" placeholder="Tamari Insta ID lakho (e.g. rahul_123)">
+      <button class="btn-create-link" onclick="generateMyWishLink()">
+        <span>🔗</span> <span>Potani Link Banao & Share Karo</span>
+      </button>
+    </div>
+
+    <!-- Footer with Name & Instagram Details -->
     <footer>
-      <div class="footer-credit">
-        <span>Made with ❤️ by <strong>Bhargav</strong></span>
-        <a href="https://www.instagram.com/bhargav_ahir_9082" target="_blank" rel="noopener noreferrer" class="insta-link" title="Instagram">
-          <svg class="insta-icon" viewBox="0 0 24 24">
-            <defs>
-              <linearGradient id="instaGrad" x1="0%" y1="100%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#f09433"/>
-                <stop offset="25%" stop-color="#e6683c"/>
-                <stop offset="50%" stop-color="#dc2743"/>
-                <stop offset="75%" stop-color="#cc2366"/>
-                <stop offset="100%" stop-color="#bc1888"/>
-              </linearGradient>
-            </defs>
-            <path fill="url(#instaGrad)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-          </svg>
-        </a>
+      <div class="footer-credit-group">
+        <div class="footer-credit">
+          <span>Sent with ❤️ by <strong id="footerSenderName">Bhargav</strong></span>
+          <a id="footerSenderIgLink" href="https://www.instagram.com/bhargav_ahir_9082" target="_blank" rel="noopener noreferrer" class="insta-link" title="Instagram">
+            <svg class="insta-icon" viewBox="0 0 24 24">
+              <defs>
+                <linearGradient id="instaGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#f09433"/>
+                  <stop offset="25%" stop-color="#e6683c"/>
+                  <stop offset="50%" stop-color="#dc2743"/>
+                  <stop offset="75%" stop-color="#cc2366"/>
+                  <stop offset="100%" stop-color="#bc1888"/>
+                </linearGradient>
+              </defs>
+              <path fill="url(#instaGrad)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+        </div>
+        <!-- Permanent Creator Attribution -->
+        <div class="creator-tag">
+          Original Creator: <a href="https://www.instagram.com/bhargav_ahir_9082" target="_blank" rel="noopener noreferrer">@bhargav_ahir_9082</a>
+        </div>
       </div>
     </footer>
+  </div>
+
+  <!-- Sweet Hug Popup Modal -->
+  <div id="hugModal" class="modal-overlay" onclick="closeHugModal(event)">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <div class="modal-emoji" id="modalEmoji">🤗💖</div>
+      <h3 class="modal-title" id="modalTitle">A Warm Hug For You!</h3>
+      <p class="modal-msg" id="modalMsg">
+        Tamaro divas ekdam mast ane anandmay rahe! Virtual hug delivered ✨
+      </p>
+
+      <!-- Quick Interactive Emoji Burst -->
+      <div class="quick-emojis" id="quickEmojiRow">
+        <button class="emoji-pill" onclick="burstSingleEmoji('🤗')">🤗</button>
+        <button class="emoji-pill" onclick="burstSingleEmoji('💖')">💖</button>
+        <button class="emoji-pill" onclick="burstSingleEmoji('✨')">✨</button>
+        <button class="emoji-pill" onclick="burstSingleEmoji('🌸')">🌸</button>
+        <button class="emoji-pill" onclick="burstSingleEmoji('☕')">☕</button>
+      </div>
+
+      <div class="modal-actions">
+        <button class="modal-btn ig-btn" onclick="sendEmojiReply()">
+          <span>💬</span> <span id="replyBtnText">Instagram par Emojis sathe Reply Moklo</span>
+        </button>
+        <button class="modal-btn close-btn" onclick="closeHugModal()">Bandh Karo</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toastBox" class="toast-msg">
+    <span>💌</span> <span id="toastText">Emojis copied! Insta DM ma paste kari dyo ✨</span>
   </div>
 
   <script>
     let currentMode = 'morning';
     let energyLevel = 50;
 
-    // Web Audio Synthesizer
+    // URL Parameters (Dynamic Sender)
+    const urlParams = new URLSearchParams(window.location.search);
+    const rawName = urlParams.get('n') || urlParams.get('name') || 'Bhargav';
+    const rawIg = urlParams.get('ig') || 'bhargav_ahir_9082';
+    const senderName = rawName.trim();
+    const senderIg = rawIg.replace('@', '').trim();
+
+    // Set UI with dynamic user
+    window.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('senderNameDisplay').innerText = senderName;
+      document.getElementById('footerSenderName').innerText = senderName;
+      document.getElementById('footerSenderIgLink').href = 'https://www.instagram.com/' + senderIg;
+      document.getElementById('replyBtnText').innerText = `${senderName} ne Insta par Reply Moklo`;
+    });
+
+    // Audio Synthesizer
     let audioCtx = null;
     let isPlaying = false;
     let toneTimer = null;
@@ -756,7 +1150,7 @@
       playTone(600);
     }
 
-    // Floating particle spawner
+    // Floating Particles
     function spawnParticle(x, y, text) {
       const el = document.createElement('div');
       el.className = 'float-item';
@@ -765,6 +1159,58 @@
       el.style.top = (y || (window.innerHeight / 2)) + 'px';
       document.body.appendChild(el);
       setTimeout(() => el.remove(), 1600);
+    }
+
+    // Mega Emoji Particles
+    function createMegaParticle(x, y, icon) {
+      const el = document.createElement('div');
+      el.className = 'mega-emoji';
+      el.innerText = icon;
+      const angle = Math.random() * Math.PI * 2;
+      const dist = 70 + Math.random() * 150;
+      const vx = Math.cos(angle) * dist;
+      const vy = Math.sin(angle) * dist - 50;
+      const rot = (Math.random() - 0.5) * 120;
+      el.style.setProperty('--vx', vx + 'px');
+      el.style.setProperty('--vy', vy + 'px');
+      el.style.setProperty('--rot', rot + 'deg');
+      el.style.left = x + 'px';
+      el.style.top = y + 'px';
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 1800);
+    }
+
+    function triggerMegaBurst() {
+      const icons = currentMode === 'morning' 
+        ? ['🤗', '💖', '☀️', '🌸', '☕', '✨', '💛', '🌈'] 
+        : ['🤗', '🌙', '⭐', '😴', '☁️', '💫', '💜', '✨'];
+      const cx = window.innerWidth / 2;
+      const cy = window.innerHeight / 2;
+      for (let i = 0; i < 22; i++) {
+        setTimeout(() => {
+          const ic = icons[Math.floor(Math.random() * icons.length)];
+          createMegaParticle(cx, cy, ic);
+        }, i * 40);
+      }
+    }
+
+    function burstSingleEmoji(emoji) {
+      playTone(520);
+      const cx = window.innerWidth / 2;
+      const cy = window.innerHeight / 2;
+      for (let i = 0; i < 8; i++) {
+        createMegaParticle(cx, cy, emoji);
+      }
+    }
+
+    function showToast(text) {
+      const box = document.getElementById('toastBox');
+      const txt = document.getElementById('toastText');
+      txt.innerText = text;
+      box.classList.add('show');
+      setTimeout(() => {
+        box.classList.remove('show');
+      }, 3400);
     }
 
     function sendHug(e) {
@@ -778,13 +1224,86 @@
         }, i * 100);
       }
       playTone(587.33);
+
+      setTimeout(() => {
+        openHugModal();
+      }, 500);
     }
 
-    // WhatsApp Share
+    function openHugModal() {
+      const modal = document.getElementById('hugModal');
+      const title = document.getElementById('modalTitle');
+      const msg = document.getElementById('modalMsg');
+      const emoji = document.getElementById('modalEmoji');
+
+      if (currentMode === 'morning') {
+        emoji.innerText = "🤗☀️";
+        title.innerText = "Sweet Morning Hug!";
+        msg.innerText = `Divas ni ek mast sharuat karo! ${senderName} tarf thi sweet virtual hug ✨`;
+      } else {
+        emoji.innerText = "🤗🌙";
+        title.innerText = "Cozy Good Night Hug!";
+        msg.innerText = `Badha divas no thak bhuline shanti thi sui jao. Sleep tight from ${senderName}! 💤`;
+      }
+      modal.classList.add('show');
+    }
+
+    function closeHugModal() {
+      document.getElementById('hugModal').classList.remove('show');
+    }
+
+    function sendEmojiReply() {
+      const emojiMsg = currentMode === 'morning'
+        ? `🤗☀️ Good Morning ${senderName}! 🌸 Wishing you an awesome day! ✨`
+        : `🤗🌙 Good Night ${senderName}! 💫 Sweet dreams & take care! 💤`;
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(emojiMsg).then(() => {
+          showToast("Emojis copied! Insta DM ma paste kari dyo 💌");
+        }).catch(() => {
+          showToast("Opening Instagram DM... 💌");
+        });
+      } else {
+        showToast("Emojis copied! Insta DM ma paste kari dyo 💌");
+      }
+
+      triggerMegaBurst();
+      playTone(660);
+
+      setTimeout(() => {
+        window.location.href = "https://ig.me/m/" + senderIg;
+      }, 700);
+    }
+
+    // Generate Custom Link for Anyone
+    function generateMyWishLink() {
+      const nameInput = document.getElementById('customNameInput').value.trim();
+      const igInput = document.getElementById('customIgInput').value.trim().replace('@', '');
+
+      if (!nameInput) {
+        showToast("Pehla tamaru naam lakho! ✍️");
+        return;
+      }
+
+      const baseUrl = window.location.origin + window.location.pathname;
+      const targetIg = igInput || 'bhargav_ahir_9082';
+      const customUrl = `${baseUrl}?name=${encodeURIComponent(nameInput)}&ig=${encodeURIComponent(targetIg)}`;
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(customUrl).then(() => {
+          showToast("Tamari custom link copy thai gai! 🎉");
+        });
+      }
+
+      // Open WhatsApp to share
+      const shareText = `Mara tarf thi tamara mate ek special wish che 💖 check karo: ${customUrl}`;
+      window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(shareText), '_blank');
+    }
+
     function shareWhatsApp() {
       const msg = currentMode === 'morning'
-        ? "Good Morning! ☀️ Aaje tamara mate ek special wish banavi che, check karo: " + window.location.href
-        : "Good Night! 🌙 Sweet dreams & take care, check karo: " + window.location.href;
+        ? `Good Morning! ☀️ ${senderName} e tamara mate ek special wish banavi che: ` + window.location.href
+        : `Good Night! 🌙 Sweet dreams & take care from ${senderName}: ` + window.location.href;
       window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(msg), '_blank');
     }
 
@@ -824,6 +1343,11 @@
       requestAnimationFrame(draw);
     }
     draw();
+
+    // Auto-detect #night in URL
+    if (window.location.hash === '#night' || window.location.search.includes('night')) {
+      setMode('night');
+    }
   </script>
 </body>
 </html>
