@@ -1423,15 +1423,17 @@
 
     function sendEmojiReply() {
       const t = i18n[currentLang];
+      const pageUrl = window.location.href;
       let emojiMsg = "";
+
       if (currentLang === 'en') {
         emojiMsg = currentMode === 'morning'
-          ? `🤗☀️ Good Morning ${senderName}! 🌸 Wishing you an awesome day! ✨`
-          : `🤗🌙 Good Night ${senderName}! 💫 Sweet dreams & take care! 💤`;
+          ? `🤗✨ [Virtual Hug Accepted!]\nHey ${senderName}, I just opened your Good Morning wish card and loved it! Sending warm vibes back to you 🌸☕\n\nWish Card: ${pageUrl}`
+          : `🤗🌙 [Virtual Hug Accepted!]\nHey ${senderName}, loved your Good Night card! Sleep tight & sweet dreams 💤⭐\n\nWish Card: ${pageUrl}`;
       } else {
         emojiMsg = currentMode === 'morning'
-          ? `🤗☀️ શુભ સવાર ${senderName}! 🌸 તમારો દિવસ ખૂબ જ સુંદર રહે! ✨`
-          : `🤗🌙 શુભ રાત્રી ${senderName}! 💫 મીઠા સપના અને કાળજી રાખજો! 💤`;
+          ? `🤗✨ [વર્ચ્યુઅલ હગ સ્વીકાર્યું!]\nહેય ${senderName}, મેં તમારું Good Morning વિશ કાર્ડ જોયું, ખૂબ ગમ્યું! તમને પણ શુભકામનાઓ 🌸☕\n\nWish Card: ${pageUrl}`
+          : `🤗🌙 [વર્ચ્યુઅલ હગ સ્વીકાર્યું!]\nહેય ${senderName}, તમારું Good Night કાર્ડ જોયું! શાંતિથી સૂઈ જાવ અને મીઠા સપના 💤⭐\n\nWish Card: ${pageUrl}`;
       }
 
       if (navigator.clipboard && navigator.clipboard.writeText) {
