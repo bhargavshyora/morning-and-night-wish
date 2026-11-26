@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="gu">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -49,13 +49,13 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 50px 16px 40px;
+      padding: 56px 16px 40px;
       transition: background 0.6s ease;
       position: relative;
       overflow-x: hidden;
     }
 
-    /* Fixed Top Corner Creator Badge */
+    /* Fixed Top Left Corner Creator Badge */
     .top-creator-badge {
       position: absolute;
       top: 14px;
@@ -82,6 +82,43 @@
       font-weight: 700;
     }
 
+    /* Language Switcher Button (Top Right) */
+    .lang-switcher {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      z-index: 10;
+      display: inline-flex;
+      background: var(--item-bg);
+      border: 1px solid var(--card-border);
+      padding: 3px;
+      border-radius: 99px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    }
+
+    .lang-btn {
+      border: none;
+      background: transparent;
+      padding: 4px 10px;
+      border-radius: 99px;
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: var(--sub);
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .lang-btn.active {
+      background: var(--accent);
+      color: #FFFFFF;
+    }
+
+    body.night-mode .lang-btn.active {
+      color: #0F172A;
+    }
+
     canvas {
       position: fixed;
       top: 0;
@@ -102,7 +139,7 @@
       gap: 16px;
     }
 
-    /* Top Switch Bar */
+    /* Top Mode Switch Bar */
     .switch-bar {
       display: flex;
       background: rgba(0, 0, 0, 0.06);
@@ -836,6 +873,12 @@
     <span>Crafted by</span> <strong>Bhargav 👑</strong>
   </a>
 
+  <!-- Top Right Language Switcher Button -->
+  <div class="lang-switcher">
+    <button class="lang-btn active" id="btnLangEn" onclick="setLanguage('en')">EN</button>
+    <button class="lang-btn" id="btnLangGu" onclick="setLanguage('gu')">ગુજરાતી</button>
+  </div>
+
   <canvas id="bg-canvas"></canvas>
 
   <div class="container">
@@ -857,7 +900,7 @@
     <div class="card">
       <!-- Sender Banner (Shows if sent by a friend) -->
       <div class="sender-banner" id="senderBanner">
-        <span>A Special Wish From</span> <strong id="senderNameDisplay">Bhargav</strong> ✨
+        <span id="senderBannerPrefix">A Special Wish From</span> <strong id="senderNameDisplay">Bhargav</strong> ✨
       </div>
 
       <div class="badge" id="badgeText">✨ Fresh New Day</div>
@@ -865,7 +908,7 @@
         Good Morning,
         <span id="titleSub">Beautiful Soul!</span>
       </h1>
-      <p class="subtitle" id="mainSubtitle">Aa divas tamara mate ekdam mast rahe! 🌸</p>
+      <p class="subtitle" id="mainSubtitle">May your day be filled with happiness and positive energy! 🌸</p>
 
       <!-- Booster -->
       <div class="booster-wrap">
@@ -875,7 +918,7 @@
           <div class="meter-fill" id="meterFill" style="width: 50%;"></div>
         </div>
         <div class="meter-info">
-          <span id="meterLabel">Vibe Level</span>
+          <span id="meterLabel">Energy Level</span>
           <span id="meterNum">50%</span>
         </div>
       </div>
@@ -884,48 +927,48 @@
     <!-- Interactive Letter Button -->
     <button class="letter-btn" id="letterBtn" onclick="toggleLetter()">
       <div class="letter-icon" id="letterIcon">💌</div>
-      <div class="letter-prompt" id="letterPrompt">Tamara mate ek special note... (Tap to read) ✨</div>
+      <div class="letter-prompt" id="letterPrompt">A special note for you... (Tap to read) ✨</div>
       <div class="letter-text" id="letterText">
-        "Smile karo, ek mast cup chai/coffee piyo ane aaje potana sapna mate ek navu paglu bharo!"
+        "Smile bright, sip your favorite tea/coffee, and take a bold new step toward your dreams today!"
       </div>
       <div class="letter-author" id="letterAuthor">— Have a wonderful day ahead 💖</div>
     </button>
 
     <!-- Checklist -->
     <div class="checklist">
-      <div class="checklist-hdr" id="checkHdr">🌸 Aajna simple goals</div>
+      <div class="checklist-hdr" id="checkHdr">🌸 Today's Simple Goals</div>
       <button class="check-btn" onclick="toggleCheck(this)">
         <div class="check-box">✓</div>
-        <span id="c1">Uthine mast smile karvi 😊</span>
+        <span id="c1">Wake up with a big smile 😊</span>
       </button>
       <button class="check-btn" onclick="toggleCheck(this)">
         <div class="check-box">✓</div>
-        <span id="c2">Chai / Coffee no mast ghoont ☕</span>
+        <span id="c2">Sip your chai or coffee mindfully ☕</span>
       </button>
       <button class="check-btn" onclick="toggleCheck(this)">
         <div class="check-box">✓</div>
-        <span id="c3">Poora divas positive & khush rahevu 🌻</span>
+        <span id="c3">Stay happy and spread good vibes 🌻</span>
       </button>
     </div>
 
     <!-- Actions (Send Hug + Share) -->
     <div class="actions">
       <button class="btn btn-hug" onclick="sendHug(event)">
-        <span>🤗</span> <span>Send Hug</span>
+        <span>🤗</span> <span id="btnHugText">Send Hug</span>
       </button>
       <button class="btn btn-share" onclick="shareWhatsApp()">
-        <span>📲</span> <span>Share</span>
+        <span>📲</span> <span id="btnShareText">Share</span>
       </button>
     </div>
 
     <!-- Create Custom Link Box -->
     <div class="create-link-box">
-      <div class="create-link-title">✨ Tamare potani link banavvi che?</div>
-      <p class="create-link-desc">Tamaru naam & Insta ID lakhi ne potani custom link banao!</p>
-      <input type="text" id="customNameInput" class="input-field" placeholder="Tamaru Naam lakho (e.g. Rahul)">
-      <input type="text" id="customIgInput" class="input-field" placeholder="Tamari Insta ID lakho (e.g. rahul_123)">
+      <div class="create-link-title" id="createTitle">✨ Want to create your own link?</div>
+      <p class="create-link-desc" id="createDesc">Enter your Name & Instagram ID to generate your custom link!</p>
+      <input type="text" id="customNameInput" class="input-field" placeholder="Enter your Name (e.g. Rahul)">
+      <input type="text" id="customIgInput" class="input-field" placeholder="Enter your Insta ID (e.g. rahul_123)">
       <button class="btn-create-link" onclick="generateMyWishLink()">
-        <span>🔗</span> <span>Potani Link Banao & Share Karo</span>
+        <span>🔗</span> <span id="btnGenerateText">Create & Share Your Link</span>
       </button>
     </div>
 
@@ -933,7 +976,7 @@
     <footer>
       <div class="footer-credit-group">
         <div class="footer-credit">
-          <span>Sent with ❤️ by <strong id="footerSenderName">Bhargav</strong></span>
+          <span id="footerSentText">Sent with ❤️ by</span> <strong id="footerSenderName">Bhargav</strong>
           <a id="footerSenderIgLink" href="https://www.instagram.com/bhargav_ahir_9082" target="_blank" rel="noopener noreferrer" class="insta-link" title="Instagram">
             <svg class="insta-icon" viewBox="0 0 24 24">
               <defs>
@@ -951,7 +994,7 @@
         </div>
         <!-- Permanent Creator Attribution -->
         <div class="creator-tag">
-          Original Creator: <a href="https://www.instagram.com/bhargav_ahir_9082" target="_blank" rel="noopener noreferrer">@bhargav_ahir_9082</a>
+          <span id="creatorTagLabel">Original Creator:</span> <a href="https://www.instagram.com/bhargav_ahir_9082" target="_blank" rel="noopener noreferrer">@bhargav_ahir_9082</a>
         </div>
       </div>
     </footer>
@@ -963,7 +1006,7 @@
       <div class="modal-emoji" id="modalEmoji">🤗💖</div>
       <h3 class="modal-title" id="modalTitle">A Warm Hug For You!</h3>
       <p class="modal-msg" id="modalMsg">
-        Tamaro divas ekdam mast ane anandmay rahe! Virtual hug delivered ✨
+        May your day be filled with smiles and joyful vibes! Virtual hug delivered ✨
       </p>
 
       <!-- Quick Interactive Emoji Burst -->
@@ -977,20 +1020,21 @@
 
       <div class="modal-actions">
         <button class="modal-btn ig-btn" onclick="sendEmojiReply()">
-          <span>💬</span> <span id="replyBtnText">Instagram par Emojis sathe Reply Moklo</span>
+          <span>💬</span> <span id="replyBtnText">Reply with Emojis on Instagram</span>
         </button>
-        <button class="modal-btn close-btn" onclick="closeHugModal()">Bandh Karo</button>
+        <button class="modal-btn close-btn" id="modalCloseBtn" onclick="closeHugModal()">Close</button>
       </div>
     </div>
   </div>
 
   <!-- Toast Notification -->
   <div id="toastBox" class="toast-msg">
-    <span>💌</span> <span id="toastText">Emojis copied! Insta DM ma paste kari dyo ✨</span>
+    <span>💌</span> <span id="toastText">Emojis copied! Paste in Instagram DM ✨</span>
   </div>
 
   <script>
     let currentMode = 'morning';
+    let currentLang = 'en'; // 'en' (English as first/default) or 'gu' (Gujarati)
     let energyLevel = 50;
 
     // URL Parameters (Dynamic Sender)
@@ -1000,12 +1044,159 @@
     const senderName = rawName.trim();
     const senderIg = rawIg.replace('@', '').trim();
 
-    // Set UI with dynamic user
+    // Multilingual Dictionary
+    const i18n = {
+      en: {
+        modeMorning: "☀️ Good Morning",
+        modeNight: "🌙 Good Night",
+        morningDate: "☀️ Good Morning Vibes",
+        nightDate: "🌙 Sweet Dreams Tonight",
+        playTone: "Play Tone",
+        playingTone: "Playing 🎶",
+        senderBannerPrefix: "A Special Wish From",
+        morningBadge: "✨ Fresh New Day",
+        nightBadge: "✨ Time To Rest",
+        morningTitle: 'Good Morning, <span id="titleSub">Beautiful Soul!</span>',
+        nightTitle: 'Good Night, <span id="titleSub">Sweet Dreams!</span>',
+        morningSub: "May your day be filled with happiness and positive energy! 🌸",
+        nightSub: "Leave all worries behind and sleep peacefully 💤",
+        morningBoosterHint: "Tap cup for fresh morning energy! ✨",
+        nightBoosterHint: "Tap moon to calm your mind! ☁️",
+        morningMeterLabel: "Energy Level",
+        nightMeterLabel: "Calm Level",
+        morningLetterPrompt: "A special note for you... (Tap to read) ✨",
+        nightLetterPrompt: "A sweet night message for you... (Tap to read) 💫",
+        morningLetterText: '"Smile bright, sip your favorite tea/coffee, and take a bold new step toward your dreams today!"',
+        nightLetterText: '"The day is done. Close your eyes, let go of everything, and drift into peaceful sleep."',
+        morningLetterAuthor: "— Have a wonderful day ahead 💖",
+        nightLetterAuthor: "— Sleep peacefully & take care 💖",
+        morningCheckHdr: "🌸 Today's Simple Goals",
+        nightCheckHdr: "✨ Bedtime Routine",
+        morningC1: "Wake up with a big smile 😊",
+        morningC2: "Sip your chai or coffee mindfully ☕",
+        morningC3: "Stay happy and spread good vibes 🌻",
+        nightC1: "Put your phone aside 📱",
+        nightC2: "Express gratitude for today 🙏",
+        nightC3: "Sleep peacefully with sweet dreams 😴",
+        btnHug: "Send Hug",
+        btnShare: "Share",
+        createTitle: "✨ Want to create your own link?",
+        createDesc: "Enter your Name & Instagram ID to generate your custom link!",
+        placeholderName: "Enter your Name (e.g. Rahul)",
+        placeholderIg: "Enter your Insta ID (e.g. rahul_123)",
+        btnGenerate: "Create & Share Your Link",
+        footerSent: "Sent with ❤️ by",
+        creatorTag: "Original Creator:",
+        modalClose: "Close",
+        nameRequired: "Please enter your name first! ✍️",
+        linkCopied: "Your custom link has been copied! 🎉",
+        emojisCopied: "Emojis copied! Paste in Instagram DM 💌",
+        openingIg: "Opening Instagram DM... 💌"
+      },
+      gu: {
+        modeMorning: "☀️ શુભ સવાર",
+        modeNight: "🌙 શુભ રાત્રી",
+        morningDate: "☀️ સુપ્રભાત વાઇબ્સ",
+        nightDate: "🌙 મીઠા સપના સાથે શાંતિ",
+        playTone: "સંગીત વગાડો",
+        playingTone: "વાગી રહ્યું છે 🎶",
+        senderBannerPrefix: "તરફથી ખાસ શુભેચ્છા",
+        morningBadge: "✨ નવી તાજગીભરી સવાર",
+        nightBadge: "✨ આરામ કરવાનો સમય",
+        morningTitle: 'શુભ સવાર, <span id="titleSub">ખુશ રહો સદા!</span>',
+        nightTitle: 'શુભ રાત્રી, <span id="titleSub">મીઠા સપના!</span>',
+        nightSub: "આખા દિવસનો થાક અને ટેન્શન ભૂલીને શાંતિથી સૂઈ જાવ 💤",
+        morningSub: "આજનો દિવસ તમારા માટે એકદમ ઉત્સાહી અને આનંદમય રહે! 🌸",
+        morningBoosterHint: "તાજી ઊર્જા માટે કપ પર ટેપ કરો! ✨",
+        nightBoosterHint: "મનને શાંત કરવા ચંદ્ર પર ટેપ કરો! ☁️",
+        morningMeterLabel: "ઊર્જા સ્તર",
+        nightMeterLabel: "શાંતિ સ્તર",
+        morningLetterPrompt: "તમારા માટે એક ખાસ સંદેશ... (વાંચવા ટેપ કરો) ✨",
+        nightLetterPrompt: "તમારા માટે રાત્રિનો મીઠો સંદેશ... (વાંચવા ટેપ કરો) 💫",
+        morningLetterText: '"ચહેરા પર મસ્ત સ્માઈલ લાવો, ચા કે કૉફીનો ઘૂંટ લો અને તમારા સપના તરફ એક નવું પગલું ભરો!"',
+        nightLetterText: '"દિવસ પૂરો થયો, હવે આંખો બંધ કરી બધા વિચારો છોડીને તારાઓની જેમ શાંતિથી સૂઈ જાવ."',
+        morningLetterAuthor: "— તમારો દિવસ શુભ રહે 💖",
+        nightLetterAuthor: "— શાંતિથી સૂઈ જાવ અને કાળજી રાખો 💖",
+        morningCheckHdr: "🌸 આજના સરળ લક્ષ્યો",
+        nightCheckHdr: "✨ સૂતા પહેલાના સરળ નિયમો",
+        morningC1: "સવારે ઊઠીને હસતા રહેવું 😊",
+        morningC2: "શાંતિથી ચા કે કૉફી માણવી ☕",
+        morningC3: "આખો દિવસ સકારાત્મક અને ખુશ રહેવું 🌻",
+        nightC1: "ફોન થોડો બાજુ પર મૂકવો 📱",
+        nightC2: "આજના દિવસ માટે આભાર માનવો 🙏",
+        nightC3: "મીઠા સપના સાથે શાંતિથી સૂઈ જવું 😴",
+        btnHug: "હગ મોકલો",
+        btnShare: "શેર કરો",
+        createTitle: "✨ તમારે પોતાની લિંક બનાવવી છે?",
+        createDesc: "તમારું નામ અને ઇન્સ્ટા આઈડી લખીને પોતાની લિંક બનાવો!",
+        placeholderName: "તમારું નામ લખો (દા.ત. રાહુલ)",
+        placeholderIg: "તમારી ઇન્સ્ટા આઈડી લખો (દા.ત. rahul_123)",
+        btnGenerate: "પોતાની લિંક બનાવો અને શેર કરો",
+        footerSent: "પ્રેમપૂર્વક મોકલનાર",
+        creatorTag: "મૂળ સર્જક:",
+        modalClose: "બંધ કરો",
+        nameRequired: "કૃપા કરીને પહેલાં તમારું નામ લખો! ✍️",
+        linkCopied: "તમારી લિંક કોપી થઈ ગઈ! 🎉",
+        emojisCopied: "ઇમોજી કોપી થઈ ગયા! ઇન્સ્ટા ડીએમમાં પેસ્ટ કરી દો 💌",
+        openingIg: "ઇન્સ્ટાગ્રામ ચેટ ખૂલી રહી છે... 💌"
+      }
+    };
+
+    // Apply Content Based on Mode & Language
+    function applyTexts() {
+      const t = i18n[currentLang];
+      const isMorning = currentMode === 'morning';
+
+      document.getElementById('btnMorning').innerText = t.modeMorning;
+      document.getElementById('btnNight').innerText = t.modeNight;
+      document.getElementById('dateDisplay').innerText = isMorning ? t.morningDate : t.nightDate;
+      document.getElementById('senderBannerPrefix').innerText = t.senderBannerPrefix;
+      document.getElementById('badgeText').innerText = isMorning ? t.morningBadge : t.nightBadge;
+      document.getElementById('mainTitle').innerHTML = isMorning ? t.morningTitle : t.nightTitle;
+      document.getElementById('mainSubtitle').innerText = isMorning ? t.morningSub : t.nightSub;
+      document.getElementById('boosterHint').innerText = isMorning ? t.morningBoosterHint : t.nightBoosterHint;
+      document.getElementById('meterLabel').innerText = isMorning ? t.morningMeterLabel : t.nightMeterLabel;
+      document.getElementById('letterPrompt').innerText = isMorning ? t.morningLetterPrompt : t.nightLetterPrompt;
+      document.getElementById('letterText').innerText = isMorning ? t.morningLetterText : t.nightLetterText;
+      document.getElementById('letterAuthor').innerText = isMorning ? t.morningLetterAuthor : t.nightLetterAuthor;
+      document.getElementById('checkHdr').innerText = isMorning ? t.morningCheckHdr : t.nightCheckHdr;
+      document.getElementById('c1').innerText = isMorning ? t.morningC1 : t.nightC1;
+      document.getElementById('c2').innerText = isMorning ? t.morningC2 : t.nightC2;
+      document.getElementById('c3').innerText = isMorning ? t.morningC3 : t.nightC3;
+      document.getElementById('btnHugText').innerText = t.btnHug;
+      document.getElementById('btnShareText').innerText = t.btnShare;
+      document.getElementById('createTitle').innerText = t.createTitle;
+      document.getElementById('createDesc').innerText = t.createDesc;
+      document.getElementById('customNameInput').placeholder = t.placeholderName;
+      document.getElementById('customIgInput').placeholder = t.placeholderIg;
+      document.getElementById('btnGenerateText').innerText = t.btnGenerate;
+      document.getElementById('footerSentText').innerText = t.footerSent;
+      document.getElementById('creatorTagLabel').innerText = t.creatorTag;
+      document.getElementById('modalCloseBtn').innerText = t.modalClose;
+
+      // Reply Button in Modal
+      if (currentLang === 'en') {
+        document.getElementById('replyBtnText').innerText = `Reply to ${senderName} on Instagram`;
+      } else {
+        document.getElementById('replyBtnText').innerText = `${senderName} ને ઇન્સ્ટા પર જવાબ મોકલો`;
+      }
+    }
+
+    // Set Language (English as default/1st, Gujarati as 2nd)
+    function setLanguage(lang) {
+      currentLang = lang;
+      document.getElementById('btnLangEn').classList.toggle('active', lang === 'en');
+      document.getElementById('btnLangGu').classList.toggle('active', lang === 'gu');
+      applyTexts();
+      playTone(520);
+    }
+
+    // Set UI on Load
     window.addEventListener('DOMContentLoaded', () => {
       document.getElementById('senderNameDisplay').innerText = senderName;
       document.getElementById('footerSenderName').innerText = senderName;
       document.getElementById('footerSenderIgLink').href = 'https://www.instagram.com/' + senderIg;
-      document.getElementById('replyBtnText').innerText = `${senderName} ne Insta par Reply Moklo`;
+      applyTexts();
     });
 
     // Audio Synthesizer
@@ -1042,16 +1233,17 @@
     function toggleAudio() {
       const btn = document.getElementById('musicBtn');
       const txt = document.getElementById('musicText');
+      const t = i18n[currentLang];
       if (!isPlaying) {
         isPlaying = true;
         btn.classList.add('playing');
-        txt.innerText = 'Playing 🎶';
+        txt.innerText = t.playingTone;
         playScale();
         toneTimer = setInterval(playScale, 3000);
       } else {
         isPlaying = false;
         btn.classList.remove('playing');
-        txt.innerText = 'Play Tone';
+        txt.innerText = t.playTone;
         clearInterval(toneTimer);
       }
     }
@@ -1079,42 +1271,15 @@
         body.classList.remove('night-mode');
         btnM.classList.add('active');
         btnN.classList.remove('active');
-
-        document.getElementById('dateDisplay').innerText = '☀️ Good Morning Vibes';
-        document.getElementById('badgeText').innerText = '✨ Fresh New Day';
-        document.getElementById('mainTitle').innerHTML = 'Good Morning, <span id="titleSub">Beautiful Soul!</span>';
-        document.getElementById('mainSubtitle').innerText = 'Aa divas tamara mate ekdam mast rahe! 🌸';
         document.getElementById('boosterBtn').innerText = '☕';
-        document.getElementById('boosterHint').innerText = 'Tap cup for fresh morning energy! ✨';
-        document.getElementById('meterLabel').innerText = 'Energy Level';
-        document.getElementById('letterPrompt').innerText = 'Tamara mate ek sweet morning note... ✨';
-        document.getElementById('letterText').innerText = '"Smile karo, ek mast cup chai/coffee piyo ane aaje potana sapna mate ek navu paglu bharo!"';
-        document.getElementById('letterAuthor').innerText = '— Have a wonderful day ahead 💖';
-        document.getElementById('checkHdr').innerText = '🌸 Aajna simple goals';
-        document.getElementById('c1').innerText = 'Uthine mast smile karvi 😊';
-        document.getElementById('c2').innerText = 'Chai / Coffee no mast ghoont ☕';
-        document.getElementById('c3').innerText = 'Poora divas positive & khush rahevu 🌻';
       } else {
         body.classList.add('night-mode');
         btnN.classList.add('active');
         btnM.classList.remove('active');
-
-        document.getElementById('dateDisplay').innerText = '🌙 Sweet Dreams Tonight';
-        document.getElementById('badgeText').innerText = '✨ Time To Rest';
-        document.getElementById('mainTitle').innerHTML = 'Good Night, <span id="titleSub">Sweet Dreams!</span>';
-        document.getElementById('mainSubtitle').innerText = 'Badha tension bhuline shanti thi sui jaavo 💤';
         document.getElementById('boosterBtn').innerText = '🌙';
-        document.getElementById('boosterHint').innerText = 'Tap moon to calm your mind! ☁️';
-        document.getElementById('meterLabel').innerText = 'Calm Level';
-        document.getElementById('letterPrompt').innerText = 'Tamara mate ek sweet night message... 💫';
-        document.getElementById('letterText').innerText = '"Aakho divas joi lidho, have aakho bandh karo ane tarao ni jem shant rahi ne mithi nindar lyo."';
-        document.getElementById('letterAuthor').innerText = '— Sleep peacefully & take care 💖';
-        document.getElementById('checkHdr').innerText = '✨ Suta pela na simple steps';
-        document.getElementById('c1').innerText = 'Phone thodo baaju ma mukvo 📱';
-        document.getElementById('c2').innerText = 'Aajna divas no aabhar manvo 🙏';
-        document.getElementById('c3').innerText = 'Mitha sapna sathe shanti thi sui javu 😴';
       }
 
+      applyTexts();
       playTone(440);
       resetLetter();
     }
@@ -1238,12 +1403,16 @@
 
       if (currentMode === 'morning') {
         emoji.innerText = "🤗☀️";
-        title.innerText = "Sweet Morning Hug!";
-        msg.innerText = `Divas ni ek mast sharuat karo! ${senderName} tarf thi sweet virtual hug ✨`;
+        title.innerText = currentLang === 'en' ? "Sweet Morning Hug!" : "સુપ્રભાત વર્ચ્યુઅલ હગ!";
+        msg.innerText = currentLang === 'en'
+          ? `Wishing you a wonderful, energetic day! Warm hug from ${senderName} ✨`
+          : `દિવસની એક મસ્ત ઉત્સાહભરી શરૂઆત કરો! ${senderName} તરફથી મીઠો હગ ✨`;
       } else {
         emoji.innerText = "🤗🌙";
-        title.innerText = "Cozy Good Night Hug!";
-        msg.innerText = `Badha divas no thak bhuline shanti thi sui jao. Sleep tight from ${senderName}! 💤`;
+        title.innerText = currentLang === 'en' ? "Cozy Good Night Hug!" : "શુભ રાત્રી પ્રેમાળ હગ!";
+        msg.innerText = currentLang === 'en'
+          ? `Let go of the day's fatigue and sleep peacefully. Sweet dreams from ${senderName}! 💤`
+          : `આખા દિવસનો થાક ભૂલીને શાંતિથી સૂઈ જાવ. ${senderName} તરફથી શુભ રાત્રી! 💤`;
       }
       modal.classList.add('show');
     }
@@ -1253,18 +1422,26 @@
     }
 
     function sendEmojiReply() {
-      const emojiMsg = currentMode === 'morning'
-        ? `🤗☀️ Good Morning ${senderName}! 🌸 Wishing you an awesome day! ✨`
-        : `🤗🌙 Good Night ${senderName}! 💫 Sweet dreams & take care! 💤`;
+      const t = i18n[currentLang];
+      let emojiMsg = "";
+      if (currentLang === 'en') {
+        emojiMsg = currentMode === 'morning'
+          ? `🤗☀️ Good Morning ${senderName}! 🌸 Wishing you an awesome day! ✨`
+          : `🤗🌙 Good Night ${senderName}! 💫 Sweet dreams & take care! 💤`;
+      } else {
+        emojiMsg = currentMode === 'morning'
+          ? `🤗☀️ શુભ સવાર ${senderName}! 🌸 તમારો દિવસ ખૂબ જ સુંદર રહે! ✨`
+          : `🤗🌙 શુભ રાત્રી ${senderName}! 💫 મીઠા સપના અને કાળજી રાખજો! 💤`;
+      }
 
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(emojiMsg).then(() => {
-          showToast("Emojis copied! Insta DM ma paste kari dyo 💌");
+          showToast(t.emojisCopied);
         }).catch(() => {
-          showToast("Opening Instagram DM... 💌");
+          showToast(t.openingIg);
         });
       } else {
-        showToast("Emojis copied! Insta DM ma paste kari dyo 💌");
+        showToast(t.emojisCopied);
       }
 
       triggerMegaBurst();
@@ -1277,11 +1454,12 @@
 
     // Generate Custom Link for Anyone
     function generateMyWishLink() {
+      const t = i18n[currentLang];
       const nameInput = document.getElementById('customNameInput').value.trim();
       const igInput = document.getElementById('customIgInput').value.trim().replace('@', '');
 
       if (!nameInput) {
-        showToast("Pehla tamaru naam lakho! ✍️");
+        showToast(t.nameRequired);
         return;
       }
 
@@ -1291,19 +1469,28 @@
 
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(customUrl).then(() => {
-          showToast("Tamari custom link copy thai gai! 🎉");
+          showToast(t.linkCopied);
         });
       }
 
-      // Open WhatsApp to share
-      const shareText = `Mara tarf thi tamara mate ek special wish che 💖 check karo: ${customUrl}`;
+      // WhatsApp text
+      const shareText = currentLang === 'en'
+        ? `Here's a special wish for you 💖 check it out: ${customUrl}`
+        : `મારા તરફથી તમારા માટે ખાસ શુભેચ્છા 💖 અહીં જુઓ: ${customUrl}`;
       window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(shareText), '_blank');
     }
 
     function shareWhatsApp() {
-      const msg = currentMode === 'morning'
-        ? `Good Morning! ☀️ ${senderName} e tamara mate ek special wish banavi che: ` + window.location.href
-        : `Good Night! 🌙 Sweet dreams & take care from ${senderName}: ` + window.location.href;
+      let msg = "";
+      if (currentLang === 'en') {
+        msg = currentMode === 'morning'
+          ? `Good Morning! ☀️ ${senderName} sent you a special morning wish: ` + window.location.href
+          : `Good Night! 🌙 Sweet dreams & take care from ${senderName}: ` + window.location.href;
+      } else {
+        msg = currentMode === 'morning'
+          ? `શુભ સવાર! ☀️ ${senderName} તરફથી તમારા માટે ખાસ શુભેચ્છા: ` + window.location.href
+          : `શુભ રાત્રી! 🌙 મીઠા સપના અને આરામથી સૂઈ જાવ - ${senderName}: ` + window.location.href;
+      }
       window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(msg), '_blank');
     }
 
